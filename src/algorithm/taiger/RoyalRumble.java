@@ -50,7 +50,7 @@ public class RoyalRumble {
         else {
             String a11 = a1[1].replace("IX", "W").replace("L", "Y");
             String b11 = b1[1].replace("IX", "W").replace("L", "Y");
-            return a11.compareTo(b11) < 0 ? true : false;
+            return a11.compareTo(b11) < 0;
         }
     }
 
