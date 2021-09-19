@@ -19,42 +19,24 @@ public class CombinationAndPermutation {
         resultList.clear();
 
         System.out.println("-------------permutation-------------");
-        resultList = permute(dataList);
+        permute(Arrays.asList(dataList), new ArrayList<String>());
         for (List<String> result : resultList) {
             System.out.println(result);
         }
     }
 
-    private static boolean[] used;
-
-    private static List<List<String>> permute(String[] dataList) {
-        if (dataList.length == 0) {
-            return resultList;
-        }
-
-        used = new boolean[dataList.length];
-        List<String> preList = new ArrayList<>();
-        generatePermutation(dataList, 0, preList);
-
-        return resultList;
-    }
-
-    private static void generatePermutation(String[] dataList, int index, List<String> preList) {
-        if (index == dataList.length) {
-            resultList.add(new ArrayList<>(preList));
+    private static void permute(List<String> remainingList, ArrayList<String> result) {
+        if (remainingList.isEmpty()) {
+            resultList.add((ArrayList) result.clone());
             return;
         }
-
-        for (int i = 0; i < dataList.length; i++) {
-            if (!used[i]) {
-                preList.add(dataList[i]);
-                used[i] = true;
-                generatePermutation(dataList, index + 1, preList);
-                preList.remove(preList.size() - 1);
-                used[i] = false;
-            }
+        for (String remaining : remainingList) {
+            ArrayList<String> leftStrings = new ArrayList<>(remainingList);
+            leftStrings.remove(remaining);
+            ArrayList<String> clone = new ArrayList<>(result);
+            clone.add(remaining);
+            permute(leftStrings, clone);
         }
-        return;
     }
 
     /**

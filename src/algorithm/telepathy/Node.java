@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Node {
     static Node rootNode;
 
-    //Initializer block before main, set your test data here
+    //Initializer block before main, set your ReentrantLockTest data here
     static {
         rootNode = new Node("root");
         Node son1 = new Node("son1");

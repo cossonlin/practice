@@ -2,12 +2,12 @@ package learning;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-public class AccountDanger implements Runnable {
+public class ThreadSafe implements Runnable {
 	private static ConcurrentHashMap<String, Integer> acct = new ConcurrentHashMap<>();
 
 	public static void main(String[] args) {
 		acct.put("account", 50);
-		AccountDanger r = new AccountDanger();
+		ThreadSafe r = new ThreadSafe();
 		Thread one = new Thread(r);
 		Thread two = new Thread(r);
 		one.setName("Fred");
@@ -30,10 +30,10 @@ public class AccountDanger implements Runnable {
 		if (acct.get("account") >= amt) {
 			System.out.println(Thread.currentThread().getName()
 					+ " is going to withdraw");
-			try {
+			/*try {
 				Thread.sleep(1000);
 			} catch (InterruptedException ex) {
-			}
+			}*/
 			int result = acct.computeIfPresent("account", (k, v) -> v - amt);
 			System.out.println(Thread.currentThread().getName()
 					+ " completes the withdrawal with " + result + " remaining");
