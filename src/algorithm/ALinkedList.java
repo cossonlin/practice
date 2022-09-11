@@ -16,11 +16,11 @@ public class ALinkedList {
     }
 
     void printList(Node node) {
-        while (node != null) {
+        while (node.next != null) {
             System.out.print(node.value + "->");
             node = node.next;
         }
-        System.out.print("End");
+        System.out.print(node.value);
     }
 
     Node reverseList(Node node) {
@@ -40,7 +40,6 @@ public class ALinkedList {
 
     public static void main(String[] agrs) {
         ALinkedList list = new ALinkedList();
-        List a = new ArrayList();
         list.head = new Node(1);
         head.next = new Node(2);
         head.next.next = new Node(3);
